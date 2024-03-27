@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Todo List</h2>
+<ul class="list-group">
+    {% for task in tasks %}
+    <li class="list-group-item">
+        <input type="checkbox" class="task-checkbox" {% if task.completed %}checked{% endif %}>
+        <span class="{% if task.completed %}task-completed{% endif %}">{{ task.title }}</span>
+        <div class="float-right">
+            <a href="{% url 'todoList:task_detail' task.id %}" class="btn btn-primary btn-sm">View</a>
+            <a href="{% url 'todoList:task_update' task.id %}" class="btn btn-secondary btn-sm">Edit</a>
+            <a href="{% url 'todoList:task_delete' task.id %}" class="btn btn-danger btn-sm">Delete</a>
+        </div>
+    </li>
+    {% empty %}
+    <li class="list-group-item">No tasks yet.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'todoList:task_create' %}" class="btn btn-success mt-3">Add Task</a>
+{% endblock %}
