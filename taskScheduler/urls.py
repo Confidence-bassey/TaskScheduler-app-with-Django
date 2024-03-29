@@ -24,10 +24,8 @@ from todoList import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('todoList/', include('todoList.urls')),
+    path('', include('todoList.urls')),
     path('accounts/register/', views.register, name='register'),
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
-    path('', RedirectView.as_view(url='/todoList/', permanent=True)),
- 
-    
+
 ]
